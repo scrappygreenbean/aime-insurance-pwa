@@ -1,0 +1,28 @@
+# =============================================================================
+#  render.yaml  —  Render Blueprint for The Insurance Agent's AIME member hub
+# =============================================================================
+#  Pure static site (HTML/CSS/JS, PWA manifest + service worker, no build step,
+#  no secrets). Same proven hosting pattern as the AIME Headshot Booth + the
+#  Realtors member hub: free Render static site, custom subdomain via GHL.
+#
+#  DEPLOY (one time, in Charli's Render account):
+#    Render Dashboard -> New + -> Blueprint -> pick the
+#    scrappygreenbean/aime-insurance-pwa repo -> Apply.
+#  Render creates a FREE static site at https://aime-insurance-pwa.onrender.com
+#  (no cold starts). Then add the custom domain in Render:
+#    the site -> Settings -> Custom Domains -> add insurance.gotaime.com
+#  Render prints the exact CNAME target to enter in GHL's DNS for gotaime.com.
+# =============================================================================
+services:
+  - type: web
+    name: aime-insurance-pwa
+    runtime: static
+    # No build needed — the files in the repo root ARE the site.
+    buildCommand: "echo 'static site — nothing to build'"
+    staticPublishPath: .
+    autoDeploy: true
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+    routes: []

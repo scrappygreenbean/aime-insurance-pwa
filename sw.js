@@ -3,7 +3,7 @@
    App-shell precache + cache-first for local assets, network-first
    for navigations (so updates show up). Bump CACHE on every release.
    ===================================================================== */
-const CACHE = 'insurance-aime-v1';
+const CACHE = 'insurance-aime-v2';
 
 const APP_SHELL = [
   'index.html',
